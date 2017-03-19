@@ -10,4 +10,10 @@ describe('Message receiver tests', () => {
       .send({sender: '447771845842', text: 'Unit test message'})
       .expect(200);
   });
+
+  it('health check responds with 200', () => {
+    return request(server)
+      .get('/health')
+      .expect(200);
+  });
 });
