@@ -2,9 +2,9 @@
   "name": "conversational-node",
   "version": "0.1.0",
   "description": "Experiments with a conversational user interface",
-  "main": "./runtimes/openshift.js",
+  "main": "openshift.js",
   "scripts": {
-    "start": "DEBUG=conversational-node:* node --use_strict ./runtimes/openshift.js",
+    "start": "DEBUG=conversational-node:* node --use_strict openshift.js",
     "test": "DEBUG=conversational-node:* mocha --recursive ./spec/",
     "score": "node .lib/tools/score/score.js",
     "debug": "DEBUG=conversational-node:* node-debug ./node_modules/.bin/_mocha --recursive ./spec/"
