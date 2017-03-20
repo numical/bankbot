@@ -9,8 +9,8 @@ describe('Service: persistence', () => {
       return reset();
     });
 
-    it('returns an error for an unknown context', () => {
-      const exchangeContext = { number: '07771999999' };
+    it('returns an error for a context that cannot be initialised', () => {
+      const exchangeContext = { foo: 'bar' };
       return getState(exchangeContext).should.be.rejected;
     });
 
@@ -32,6 +32,20 @@ describe('Service: persistence', () => {
       const exchangeContext = { number: '07771000001' };
       return getState(exchangeContext).then(state => {
         state.contexts.should.not.be.empty; // eslint-disable-line 
+      });
+    });
+
+    it('returns Alice for any odd number', () => {
+      const exchangeContext = { number: '1234567' };
+      return getState(exchangeContext).then(state => {
+        state.user.name.should.equal('Alice');
+      });
+    });
+
+    it('returns Bob for any even number', () => {
+      const exchangeContext = { number: '12345678' };
+      return getState(exchangeContext).then(state => {
+        state.user.name.should.equal('Bob');
       });
     });
   });
