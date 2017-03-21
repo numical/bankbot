@@ -4,7 +4,7 @@ const moment = require('moment');
 const env = require('node-env-file');
 const path = require('path');
 env(path.join(__dirname, '/../..', '/.env'));
-const sendMessage = require('../../lib/sms/sender.js');
+const sendMessage = require('../../lib/sms/messageSender.js');
 
 const phone = '447771845842';
 
