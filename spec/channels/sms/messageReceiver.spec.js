@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 
-const server = require('../../lib/sms/messageReceiver.js').server;
+const server = require('../../../lib/channels/sms/messageReceiver.js').server;
 const request = require('supertest');
 
 describe('Message receiver tests', () => {

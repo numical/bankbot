@@ -4,7 +4,7 @@ const bye = require('../../lib/commands/bye.js');
 const notUnderstood = require('../../lib/commands/notUnderstood.js');
 const subject = require('../../lib/chatbot/selectCommand.js');
 const welcome = require('../../lib/commands/welcome.js');
-const WelcomeContext = require('../../lib/contexts/Welcome.js');
+const welcomeContext = require('../../lib/contexts/welcome.js');
 
 let state;
 
@@ -39,7 +39,7 @@ describe('Select Command - ', () => {
         user: {
           name: 'Bob'
         },
-        contexts: [new WelcomeContext()]
+        contexts: [welcomeContext()]
       };
     });
 

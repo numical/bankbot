@@ -1,10 +1,10 @@
 /* eslint-env mocha */
-require('../initialisedChai.js');
+require('../../initialisedChai.js');
 const moment = require('moment');
 const env = require('node-env-file');
 const path = require('path');
-env(path.join(__dirname, '/../..', '/.env'));
-const sendMessage = require('../../lib/sms/messageSender.js');
+env(path.join(__dirname, '/../../..', '/.env'));
+const sendMessage = require('../../../lib/channels/sms/messageSender.js');
 
 const phone = '447771845842';
 
