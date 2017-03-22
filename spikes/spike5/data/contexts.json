@@ -1,0 +1,23 @@
+{
+  "contexts": [
+    {
+      "user": "Alice",
+      "number": "07771000001",
+      "accounts": {
+        "current" : {
+          "balance": "740.33"
+        }
+      }
+    },
+    {
+      "user": "Bob",
+      "number": "07771000002",
+      "accounts": {
+        "current" : {
+          "balance": "102.82"
+        }
+      }
+      
+    }
+  ]
+}
