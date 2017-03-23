@@ -2,8 +2,8 @@
   "name": "conversational-node",
   "version": "0.1.0",
   "description": "Experiments with a conversational user interface",
-  "engines" : { 
-    "node" : ">=7.7.3"
+  "engines": {
+    "node": ">=7.7.3"
   },
   "main": "./lib/runtimes/openshift.js",
   "scripts": {
@@ -45,6 +45,7 @@
     "mocha": "^3.2.0",
     "node-env-file": "^0.1.8",
     "proxyquire": "^1.7.11",
+    "sinon": "^2.1.0",
     "supertest": "^3.0.0"
   }
 }
