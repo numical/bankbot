@@ -1,2 +1,1 @@
-const runtime = require('./runtimes/openshift.js');
-runtime();
+require('./lib/runtimes/openshift.js');

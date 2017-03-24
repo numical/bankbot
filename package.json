@@ -5,12 +5,12 @@
   "engines": {
     "node": ">=7.7.3"
   },
-  "main": "./lib/runtimes/openshift.js",
+  "main": "./index.js",
   "scripts": {
-    "start": "node ./lib/runtimes/openshift.js",
-    "test": "DEBUG=conversational-node:* mocha --recursive ./spec/",
+    "start": "node ./index.js",
+    "test": "mocha --recursive ./spec",
     "score": "node ./lib/tools/score/score.js",
-    "debug": "DEBUG=conversational-node:* node-debug ./node_modules/.bin/_mocha --recursive ./spec/"
+    "debug": "DEBUG=conversational-node:* node-debug ./node_modules/.bin/_mocha --recursive ./spec"
   },
   "repository": {
     "type": "git",

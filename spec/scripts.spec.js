@@ -1,11 +1,11 @@
 /* eslint-env mocha */
-require('../services/initialisedChai.js');
-const replyTo = require('../chatbot/replyTo.js');
+require('./initialisedChai.js');
+const replyTo = require('../lib/chatbot/replyTo.js');
 const fs = require('fs');
 const path = require('path');
-const persistence = require('../services/persistence.js');
+const persistence = require('../lib/services/persistence.js');
 
-const scriptPath = path.resolve(__dirname, '../tests');
+const scriptPath = path.resolve(__dirname, './scripts');
 
 // sync as mocha scans for 'it' definitions before async ops finish
 const loadScripts = dir => {
@@ -29,7 +29,7 @@ const generateScriptTest = testData =>
     }
   };
 
-describe('Chatbot Scripts', () => {
+describe('Scripts', () => {
   beforeEach(() => {
     persistence.reset();
   });

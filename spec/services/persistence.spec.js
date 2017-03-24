@@ -3,7 +3,7 @@ require('../initialisedChai.js');
 const getState = require('../../lib/services/persistence.js').getState;
 const reset = require('../../lib/services/persistence.js').reset;
 
-describe('Service: persistence', () => {
+describe('Persistence', () => {
   describe('getState', () => {
     beforeEach(() => {
       return reset();
