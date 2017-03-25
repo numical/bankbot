@@ -1,6 +1,6 @@
 {
   "name": "conversational-node",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "Experiments with a conversational user interface",
   "engines": {
     "node": ">=7.7.3"
