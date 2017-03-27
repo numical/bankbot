@@ -45,7 +45,7 @@
     "mocha": "^3.2.0",
     "node-env-file": "^0.1.8",
     "proxyquire": "^1.7.11",
-    "sinon": "^2.1.0",
+    "sinon": "^1.17.7",
     "supertest": "^3.0.0"
   }
 }
