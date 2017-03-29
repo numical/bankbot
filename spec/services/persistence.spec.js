@@ -14,10 +14,24 @@ describe('Persistence', () => {
       return getState(exchangeContext).should.be.rejected;
     });
 
+    it('returns Alice for name Alice', () => {
+      const exchangeContext = { name: 'Alice' };
+      return getState(exchangeContext).then(state => {
+        state.user.name.should.equal('Alice');
+      });
+    });
+
     it('returns Alice for number 07771000001', () => {
       const exchangeContext = { number: '07771000001' };
       return getState(exchangeContext).then(state => {
         state.user.name.should.equal('Alice');
+      });
+    });
+
+    it('returns Bob for name Bob', () => {
+      const exchangeContext = { name: 'Bob' };
+      return getState(exchangeContext).then(state => {
+        state.user.name.should.equal('Bob');
       });
     });
 

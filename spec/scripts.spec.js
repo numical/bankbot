@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const persistence = require('../lib/services/persistence.js');
 
+const only = []; // '4_accept_credit_card_notification'];
 const scriptPath = path.resolve(__dirname, './scripts');
 
 // sync as mocha scans for 'it' definitions before async ops finish
@@ -29,11 +30,15 @@ const generateScriptTest = testData =>
     }
   };
 
-describe('Scripts', () => {
+const describeFn = only.length > 0 ? describe.only : describe;
+
+describeFn('Scripts', () => {
   beforeEach(() => {
     persistence.reset();
   });
   Object.keys(scripts).forEach(script => {
-    it(script, generateScriptTest(scripts[script]));
+    if ((only.length === 0) || only.includes(script)) {
+      it(script, generateScriptTest(scripts[script]));
+    }
   });
 });
