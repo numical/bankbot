@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 require('../initialisedChai.js');
-const getState = require('../../lib/services/persistence.js').getState;
-const reset = require('../../lib/services/persistence.js').reset;
+const getState = require('../../lib/services/getState.js');
+const reset = require('../../lib/services/reset.js');
 
 describe('Persistence', () => {
   describe('getState', () => {
