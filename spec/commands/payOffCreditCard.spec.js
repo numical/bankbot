@@ -3,12 +3,14 @@ require('../initialisedChai.js');
 const { calculateBalances, createPaymentAction, MIN, MAX } = require('../../lib/commands/payOffCreditCard.js');
 
 const state = {
-  accounts: {
-    current: {
-      balance: 500.00
-    },
-    creditcard: {
-      balance: 199.99
+  user: {
+    accounts: {
+      current: {
+        balance: 500.00
+      },
+      creditcard: {
+        balance: 199.99
+      }
     }
   }
 };
