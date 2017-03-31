@@ -8,8 +8,7 @@
   "main": "./index.js",
   "files": [
     "index.js",
-    "lib/",
-    "data/"
+    "lib/"
   ],
   "scripts": {
     "start": "node ./index.js",
