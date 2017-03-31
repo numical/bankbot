@@ -31,7 +31,7 @@ describe('set up credit card command', () => {
   });
 
   it('returns  message', async () => {
-    const expected = 'Ok, I will notify you about any outstanding credit card repayment around the 35th of the month.';
+    const expected = 'Ok, I will notify you about any outstanding credit card repayment around the 35th of the month. In the meantime you can check your [balance].';
     await subject(replyContext, state).should.eventually.equal(expected);
   });
 
