@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const chai = require('chai');
-const Context = require('./context.js');
+const Context = require('../../lib/contexts/context.js');
 
 chai.should();
 
