@@ -4,7 +4,7 @@ require('../initialisedChai.js');
 const proxyquire = require('proxyquire').noPreserveCache().noCallThru();
 const sinon = require('sinon');
 const { content } = require('../../lib/commands/payOffCreditCardQuery.js');
-const reset = require('../../lib/services/reset.js');
+const persistence = require('../../lib/services/persistence.js');
 
 const sendMessage = sinon.spy();
 const replyContext = { number: 'TEST NUMBER' };
@@ -48,7 +48,7 @@ describe('pay off credit card query command', () => {
     });
 
     afterEach(async () => {
-      reset();
+      persistence.reset();
     });
   });
 });

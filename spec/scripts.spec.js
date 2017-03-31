@@ -3,7 +3,7 @@ require('./initialisedChai.js');
 const replyTo = require('../lib/chatbot/replyTo.js');
 const fs = require('fs');
 const path = require('path');
-const reset = require('../lib/services/reset.js');
+const persistence = require('../lib/services/persistence.js');
 
 const only = []; // '4_accept_credit_card_notification'];
 const scriptPath = path.resolve(__dirname, './scripts');
@@ -34,7 +34,7 @@ const describeFn = only.length > 0 ? describe.only : describe;
 
 describeFn('Scripts', () => {
   beforeEach(() => {
-    reset();
+    persistence.reset();
   });
   Object.keys(scripts).forEach(script => {
     if ((only.length === 0) || only.includes(script)) {
