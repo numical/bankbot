@@ -7,29 +7,23 @@ const unexpectedError = require('../../lib/commands/unexpectedError.js');
 const proxyquire = require('proxyquire');
 
 const subject = proxyquire('../../lib/chatbot/replyTo.js', {
-  '../services/persistence.js': {
-    getState: () => ({
-      user: {
-        name: 'Alice'
-      },
-      contexts: []
-    })
-  }
+  '../services/getState.js': () => ({
+    user: {
+      name: 'Alice'
+    },
+    contexts: []
+  })
 });
 
 const errorMessage = 'test error msg';
 const errorSubject = proxyquire('../../lib/chatbot/replyTo.js', {
-  '../services/persistence.js': {
-    getState: () => {
-      throw new Error(errorMessage);
-    }
+  '../services/getState.js': () => {
+    throw new Error(errorMessage);
   }
 });
 const botErrorSubject = proxyquire('../../lib/chatbot/replyTo.js', {
-  '../services/persistence.js': {
-    getState: () => {
-      throw new BotError(errorMessage);
-    }
+  '../services/getState.js': () => {
+    throw new BotError(errorMessage);
   }
 });
 
