@@ -14,7 +14,9 @@
     "start": "node ./index.js",
     "test": "mocha --recursive ./spec",
     "score": "node ./lib/tools/score/score.js",
-    "debug": "DEBUG=conversational-node:* node-debug ./node_modules/.bin/_mocha --recursive ./spec"
+    "debug": "DEBUG=conversational-node:* node-debug ./node_modules/.bin/_mocha --recursive ./spec",
+    "console": "node ./lib/runtimes/console.js",
+    "console.debug": "node-debug ./lib/runtimes/console.js"
   },
   "repository": {
     "type": "git",
