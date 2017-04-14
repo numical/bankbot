@@ -4,4 +4,6 @@ const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 chai.should();
 
-module.exports = chai;
+process.on('unhandledRejection', (reason) => {
+  console.error('Unhandled rejection during test: ', reason);
+});

@@ -1,5 +1,5 @@
 /* eslint-env mocha */
-require('../initialisedChai.js');
+require('../initialiseTests.js');
 const { calculateBalances, createPaymentAction, MIN, MAX } = require('../../lib/commands/payOffCreditCard.js');
 
 const state = {

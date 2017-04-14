@@ -1,5 +1,5 @@
 /* eslint-env mocha */
-require('./initialisedChai.js');
+require('./initialiseTests.js');
 const replyTo = require('../lib/channels/process/processReceiver.js');
 const fs = require('fs');
 const path = require('path');

@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 /* eslint no-unused-expressions: 0 */
 'use strict';
-require('../initialisedChai.js');
+require('../initialiseTests.js');
 const proxyquire = require('proxyquire').noCallThru().noPreserveCache();
 const sinon = require('sinon');
 
@@ -11,7 +11,7 @@ const messageReceiver = {
 
 const load = () => {
   proxyquire('../../lib/runtimes/openshift.js', {
-    '../channels/sms/messageReceiver.js': messageReceiver
+    '../channels/sms/smsReceiver.js': messageReceiver
   });
 };
 

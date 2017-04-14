@@ -1,5 +1,5 @@
 /* eslint-env mocha */
-require('../initialisedChai.js');
+require('../initialiseTests.js');
 const BotError = require('../../lib/errors/BotError.js');
 const bye = require('../../lib/commands/bye.js');
 const notUnderstood = require('../../lib/commands/notUnderstood.js');

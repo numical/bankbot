@@ -1,6 +1,7 @@
 /* eslint-env mocha */
 /* eslint no-unused-expressions : 0 */
-require('../initialisedChai.js');
+'use strict';
+require('../initialiseTests.js');
 const proxyquire = require('proxyquire').noPreserveCache().noCallThru();
 const sinon = require('sinon');
 const { content } = require('../../lib/commands/payOffCreditCardQuery.js');

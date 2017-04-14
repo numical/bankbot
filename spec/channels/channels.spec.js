@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 /* eslint no-unused-expressions: 0 */
 'use strict';
-require('../initialisedChai.js');
+require('../initialiseTests.js');
 const proxyquire = require('proxyquire');
 const { stub } = require('sinon');
 const { CONSOLE, PROCESS, SMS, SCHEDULER } = require('../../lib/channels/channels.js');

@@ -1,5 +1,5 @@
 /* eslint-env mocha */
-require('../initialisedChai.js');
+require('../initialiseTests.js');
 const BotError = require('../../lib/errors/BotError.js');
 
 const errorMessage = 'test error message';

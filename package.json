@@ -13,6 +13,7 @@
   "scripts": {
     "start": "node ./index.js",
     "test": "mocha --recursive ./spec",
+    "test.log": "DEBUG=conversational-node:* mocha --recursive ./spec",
     "score": "node ./lib/tools/score/score.js",
     "debug": "DEBUG=conversational-node:* node-debug ./node_modules/.bin/_mocha --recursive ./spec",
     "console": "node ./lib/runtimes/console.js",
@@ -41,6 +42,7 @@
     "debug": "^2.6.2",
     "moment": "^2.18.1",
     "natural": "^0.5.0",
+    "node-env-file": "^0.1.8",
     "node-fetch": "^1.6.3",
     "restify": "^4.3.0"
   },
@@ -49,7 +51,6 @@
     "chai-as-promised": "^6.0.0",
     "denodeify": "^1.2.1",
     "mocha": "^3.2.0",
-    "node-env-file": "^0.1.8",
     "proxyquire": "^1.7.11",
     "sinon": "^2.1.0",
     "supertest": "^3.0.0"

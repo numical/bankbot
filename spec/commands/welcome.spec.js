@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 /* eslint no-unused-expressions : 0 */
-require('../initialisedChai.js');
+require('../initialiseTests.js');
 const subject = require('../../lib/commands/welcome.js');
 
 const state = {

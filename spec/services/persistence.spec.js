@@ -1,5 +1,5 @@
 /* eslint-env mocha */
-require('../initialisedChai.js');
+require('../initialiseTests.js');
 const getState = require('../../lib/services/getState.js');
 const reset = require('../../lib/services/reset.js');
 

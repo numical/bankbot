@@ -1,17 +1,22 @@
 /* eslint-env mocha */
-require('../../initialisedChai.js');
+'use strict';
+require('../../initialiseTests.js');
 const moment = require('moment');
-const env = require('node-env-file');
-const path = require('path');
-env(path.join(__dirname, '/../../..', '/.env'));
 const sendMessage = require('../../../lib/channels/sms/smsSender.js');
+const { ADMIN_NUMBERS, TEST_NUMBERS } = require('../../../lib/constants/botfields.js');
+const fakePhone = TEST_NUMBERS[0];
+const realPhone = ADMIN_NUMBERS[0];
 
-const phone = '447771845842';
-
-xdescribe('Sender tests', () => {
-  it('basic send works', () => {
+describe('SMS sender tests', () => {
+  it('basic send works with fake phone number', async () => {
     const now = moment();
     const msg = `Test message sent at ${now.hour()}:${now.minute()}:${now.second()}`;
-    return sendMessage(phone, msg).should.eventually.equal(true);
+    return await sendMessage(fakePhone, msg).should.eventually.equal(msg);
+  });
+
+  xit('basic send works with real phone number', async () => {
+    const now = moment();
+    const msg = `Test message sent at ${now.hour()}:${now.minute()}:${now.second()}`;
+    return await sendMessage(realPhone, msg).should.eventually.equal(msg);
   });
 });
