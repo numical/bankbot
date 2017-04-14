@@ -3,7 +3,7 @@ require('../initialiseTests.js');
 const BotError = require('../../lib/errors/BotError.js');
 const bye = require('../../lib/commands/bye.js');
 const notUnderstood = require('../../lib/commands/notUnderstood.js');
-const unexpectedError = require('../../lib/commands/unexpectedError.js');
+const { unexpectedErrorMessage } = require('../../lib/chatbot/replyTo.js');
 const proxyquire = require('proxyquire');
 
 const subject = proxyquire('../../lib/chatbot/replyTo.js', {
@@ -37,7 +37,7 @@ describe('replyTo - ', () => {
   });
 
   it('handles an unexpected Error by displaying the Unexpected Error message', async () => {
-    await errorSubject({}, 'anything').should.eventually.equal(unexpectedError.content);
+    await errorSubject({}, 'anything').should.eventually.equal(unexpectedErrorMessage);
   });
 
   it('handles a BotError by displaying the BotError\'s message', async () => {
