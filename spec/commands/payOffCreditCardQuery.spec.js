@@ -2,54 +2,53 @@
 /* eslint no-unused-expressions : 0 */
 'use strict';
 require('../initialiseTests.js');
-const proxyquire = require('proxyquire').noPreserveCache().noCallThru();
-const sinon = require('sinon');
-const { content } = require('../../lib/commands/payOffCreditCardQuery.js');
-const reset = require('../../lib/services/reset.js');
+const { expect } = require('chai');
+const { PayCreditCard } = require('../../lib/contexts/payCreditCard.js');
+const subject = require('../../lib/commands/payOffCreditCardQuery.js');
 
-const sendMessage = sinon.spy();
-const replyContext = { number: 'TEST NUMBER' };
+const initState = (currentAccountBalance, creditCardBalance) => ({
+  user: {
+    accounts: {
+      current: {
+        balance: currentAccountBalance
+      },
+      creditcard: {
+        balance: creditCardBalance
+      }
+    }
+  },
+  contexts: []
+});
 
 describe('pay off credit card query command', () => {
-  beforeEach(() => {
-    sendMessage.reset();
+  it('returns a message detailing amount owed', async () => {
+    const state = initState('500.50', '230.23');
+    const msg = await subject({}, state);
+    expect(msg).to.contain('You owe £230.23');
   });
-/*
-  describe('with persistence mocked', () => {
-    const state = { user: { number: 'MOCKED TEST NUMBER' } };
-    const getState = sinon.stub().returns(Promise.resolve(state));
-    const subject = proxyquire('../../lib/commands/payOffCreditCardQuery.js', {
-      '../services/persistence.js': { getState },
-      '../channels/sms/messageSender.js': sendMessage
-    });
 
-    beforeEach(() => {
-      getState.reset();
-    });
-
-    it('calls persistence with passed reply context', async () => {
-      await subject(replyContext);
-      getState.calledWithExactly(replyContext);
-    });
-
-    it('calls send message with user number and message', async () => {
-      await subject(replyContext);
-      sendMessage.calledWithExactly('MOCKED TEST NUMBER', content);
-    });
+  it('returns a message detailing minimum payment', async () => {
+    const state = initState('500.50', '230.23');
+    const msg = await subject({}, state);
+    expect(msg).to.contain('a [minimum] payment of £25.00');
   });
-*/
-  describe('with real persistence', () => {
-    const subject = proxyquire('../../lib/commands/payOffCreditCardQuery.js', {
-      '../channels/sms/messageSender.js': sendMessage
-    });
 
-    it('calls send with user number and message', async () => {
-      await subject(replyContext);
-      sendMessage.calledWithExactly('TEST NUMBER', content);
-    });
+  it('returns a message detailing maximum payment limited by credit balance', async () => {
+    const state = initState('500.50', '230.23');
+    const msg = await subject({}, state);
+    expect(msg).to.contain('a [maximum] payment of £230.23');
+  });
 
-    afterEach(async () => {
-      reset();
-    });
+  it('returns a message detailing maximum payment limited by current balance', async () => {
+    const state = initState('100.11', '230.23');
+    const msg = await subject({}, state);
+    expect(msg).to.contain('a [maximum] payment of £100.11');
+  });
+
+  it('adds a payment context', async () => {
+    const state = initState('500.50', '230.23');
+    await subject({}, state);
+    expect(state.contexts.length).to.equal(1);
+    expect(state.contexts[0]).to.be.instanceof(PayCreditCard);
   });
 });
