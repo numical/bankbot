@@ -45,7 +45,7 @@ describe('pay off credit card query command', () => {
 
     it('calls send with user number and message', async () => {
       await subject(replyContext);
-      sendMessage.calledWithExactly('TEST NUMBER', content);
+      sendMessage.calledWithExactly(replyContext, content);
     });
 
     afterEach(async () => {
