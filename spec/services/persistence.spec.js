@@ -1,3 +1,4 @@
+'use strict';
 /* eslint-env mocha */
 require('../initialiseTests.js');
 const getState = require('../../lib/services/getState.js');
