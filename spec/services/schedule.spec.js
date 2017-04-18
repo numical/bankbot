@@ -24,7 +24,7 @@ const replyContext = {
 };
 const command = () => {};
 
-describe.only('Schedule Service', () => {
+describe('Schedule Service', () => {
   beforeEach(() => {
     state.contexts = [];
     getState.resetHistory();

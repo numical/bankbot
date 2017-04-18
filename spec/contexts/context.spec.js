@@ -1,8 +1,7 @@
 /* eslint-env mocha */
-const chai = require('chai');
+'use strict';
+require('../initialiseTests.js');
 const Context = require('../../lib/contexts/context.js');
-
-chai.should();
 
 const fooCommand = () => 'foo';
 const barCommand = () => 'bar';
