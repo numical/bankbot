@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const reset = require('../lib/services/reset.js');
 
-const only = []; // ['1_hello_alice']; // '4_accept_credit_card_notification'];
+const only = []; // ['3_admin_reset']; // ['1_hello_alice']; // '4_accept_credit_card_notification'];
 const scriptPath = path.resolve(__dirname, './scripts');
 
 // sync as mocha scans for 'it' definitions before async ops finish
