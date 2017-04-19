@@ -15,7 +15,7 @@ const channels = {
   replyTo: stub()
 };
 const subject = proxyquire('../../lib/services/schedule.js', {
-  './getState.js': getState,
+  '../persistence/getState.js': getState,
   '../channels/channels.js': channels
 });
 const replyContext = {

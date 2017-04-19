@@ -4,7 +4,7 @@
 require('../initialiseTests.js');
 const { expect } = require('chai');
 const BotError = require('../../lib/errors/BotError.js');
-const subject = require('../../lib/services/createNewStateBasedOnNumber.js');
+const subject = require('../../lib/persistence/createNewStateBasedOnNumber.js');
 
 describe('create new state based on number', () => {
   it('creates a state based on Alice', () => {

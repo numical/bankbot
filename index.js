@@ -1,1 +1,2 @@
-require('./lib/runtimes/openshift.js');
+'use strict';
+require('./lib/runtimes/heroku.js');

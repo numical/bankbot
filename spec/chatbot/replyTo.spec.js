@@ -1,4 +1,5 @@
 /* eslint-env mocha */
+'use strict';
 require('../initialiseTests.js');
 const BotError = require('../../lib/errors/BotError.js');
 const bye = require('../../lib/commands/bye.js');
@@ -7,7 +8,7 @@ const { unexpectedErrorMessage } = require('../../lib/chatbot/replyTo.js');
 const proxyquire = require('proxyquire');
 
 const subject = proxyquire('../../lib/chatbot/replyTo.js', {
-  '../services/getState.js': () => ({
+  '../persistence/getState.js': () => ({
     user: {
       name: 'Alice'
     },
@@ -17,12 +18,12 @@ const subject = proxyquire('../../lib/chatbot/replyTo.js', {
 
 const errorMessage = 'test error msg';
 const errorSubject = proxyquire('../../lib/chatbot/replyTo.js', {
-  '../services/getState.js': () => {
+  '../persistence/getState.js': () => {
     throw new Error(errorMessage);
   }
 });
 const botErrorSubject = proxyquire('../../lib/chatbot/replyTo.js', {
-  '../services/getState.js': () => {
+  '../persistence/getState.js': () => {
     throw new BotError(errorMessage);
   }
 });

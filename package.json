@@ -1,5 +1,5 @@
 {
-  "name": "conversational-node",
+  "name": "bankbot",
   "version": "0.1.3",
   "description": "Experiments with a conversational user interface",
   "engines": {
@@ -13,15 +13,15 @@
   "scripts": {
     "start": "node ./index.js",
     "test": "mocha --recursive ./spec",
-    "test.log": "DEBUG=conversational-node:* mocha --recursive ./spec",
+    "test.log": "DEBUG=bankbot:* mocha --recursive ./spec",
     "score": "node ./lib/tools/score/score.js",
-    "debug": "DEBUG=conversational-node:* node-debug ./node_modules/.bin/_mocha --recursive ./spec",
+    "debug": "DEBUG=bankbot:* node-debug ./node_modules/.bin/_mocha --recursive ./spec",
     "console": "node ./lib/runtimes/console.js",
     "console.debug": "node-debug ./lib/runtimes/console.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/numical/conversational-node.git"
+    "url": "git+https://github.com/numical/bankbot.git"
   },
   "keywords": [
     "conversational",
@@ -35,9 +35,9 @@
   "author": "Mike Evans mike.evans@numical.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/numical/conversational-node/issues"
+    "url": "https://github.com/numical/bankbot/issues"
   },
-  "homepage": "https://github.com/numical/conversational-node#readme",
+  "homepage": "https://github.com/numical/bankbot#readme",
   "dependencies": {
     "debug": "^2.6.2",
     "moment": "^2.18.1",
