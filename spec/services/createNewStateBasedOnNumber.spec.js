@@ -1,6 +1,9 @@
 /* eslint-env mocha */
+/* eslint no-unused-expressions: 0 */
 'use strict';
 require('../initialiseTests.js');
+const { expect } = require('chai');
+const BotError = require('../../lib/errors/BotError.js');
 const subject = require('../../lib/services/createNewStateBasedOnNumber.js');
 
 describe('create new state based on number', () => {
@@ -26,5 +29,11 @@ describe('create new state based on number', () => {
     const replyContext = { number: '2' };
     const state = subject(replyContext);
     state.user.isFirstTimeUser.should.be.true;
+  });
+
+  it('throws a BotError is no number passed', () => {
+    const replyContext = { name: 'wibble' };
+    const test = subject.bind(null, replyContext);
+    expect(test).to.throw(BotError, 'Sorry, I cannot be sure who you are.');
   });
 });
