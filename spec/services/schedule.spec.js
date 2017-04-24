@@ -4,19 +4,17 @@
 require('../initialiseTests.js');
 const proxyquire = require('proxyquire');
 const { stub } = require('sinon');
-const { SCHEDULER } = require('../../lib/channels/channels.js');
 const { Scheduled } = require('../../lib/contexts/scheduled.js');
 
 const state = {
   contexts: []
 };
 const getState = stub().resolves(state);
-const channels = {
-  replyTo: stub()
-};
+const replyTo = stub();
+
 const subject = proxyquire('../../lib/services/schedule.js', {
   '../persistence/getState.js': getState,
-  '../channels/channels.js': channels
+  '../chatbot/replyTo.js': replyTo
 });
 const replyContext = {
   foo: 'bar',
@@ -28,7 +26,7 @@ describe('Schedule Service', () => {
   beforeEach(() => {
     state.contexts = [];
     getState.resetHistory();
-    channels.replyTo.resetHistory();
+    replyTo.resetHistory();
   });
 
   it('exports RANDOM DELAY', () => {
@@ -47,17 +45,13 @@ describe('Schedule Service', () => {
     state.contexts[0].command.should.equal(command);
   });
 
-  it('calls replyTo on channels', async() => {
+  it('calls chatbot replyTo', async() => {
     await subject.triggerReply(replyContext, command);
-    channels.replyTo.calledOnce.should.be.true;
+    replyTo.calledOnce.should.be.true;
   });
 
-  it('passes modified reply context to replyTo', async() => {
+  it('passes reply contexti and command to replyTo', async() => {
     await subject.triggerReply(replyContext, command);
-    const args = channels.replyTo.firstCall.args;
-    args.length.should.equal(2);
-    const context = args[0];
-    context.channel.toString().should.equal(SCHEDULER.toString());
-    context.sendChannel.should.equal(replyContext.channel);
+    replyTo.calledWithExactly(replyContext, command);
   });
 });

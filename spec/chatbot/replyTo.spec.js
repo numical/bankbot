@@ -1,11 +1,18 @@
 /* eslint-env mocha */
+/* eslint no-unused-expressions: 0 */
 'use strict';
 require('../initialiseTests.js');
 const BotError = require('../../lib/errors/BotError.js');
 const bye = require('../../lib/commands/bye.js');
 const notUnderstood = require('../../lib/commands/notUnderstood.js');
-const { unexpectedErrorMessage } = require('../../lib/chatbot/replyTo.js');
 const proxyquire = require('proxyquire');
+const { spy } = require('sinon');
+const { unexpectedErrorMessage } = require('../../lib/chatbot/replyTo.js');
+
+const sendMessage = spy();
+const replyContext = {
+  sendMessage
+};
 
 const subject = proxyquire('../../lib/chatbot/replyTo.js', {
   '../persistence/getState.js': () => ({
@@ -29,19 +36,26 @@ const botErrorSubject = proxyquire('../../lib/chatbot/replyTo.js', {
 });
 
 describe('replyTo - ', () => {
+  beforeEach(() => {
+    sendMessage.reset();
+  });
   it('replies to gibberish with Not Understood message', async () => {
-    await subject({}, 'xyzjkl').should.eventually.equal(notUnderstood.content);
+    await subject(replyContext, 'xyzjkl');
+    sendMessage.calledWithExactly(replyContext, notUnderstood.content).should.be.true;
   });
 
   it('replies to bye with Bye message', async () => {
-    await subject({}, 'bye').should.eventually.equal(bye.content);
+    await subject(replyContext, 'bye');
+    sendMessage.calledWithExactly(replyContext, bye.content).should.be.true;
   });
 
   it('handles an unexpected Error by displaying the Unexpected Error message', async () => {
-    await errorSubject({}, 'anything').should.eventually.equal(unexpectedErrorMessage);
+    await errorSubject(replyContext, 'anything');
+    sendMessage.calledWithExactly(replyContext, unexpectedErrorMessage).should.be.true;
   });
 
   it('handles a BotError by displaying the BotError\'s message', async () => {
-    await botErrorSubject({}, 'anything').should.eventually.equal(errorMessage);
+    await botErrorSubject(replyContext, 'anything');
+    sendMessage.calledWithExactly(replyContext, errorMessage).should.be.true;
   });
 });
