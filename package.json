@@ -15,7 +15,7 @@
     "test": "mocha --recursive ./spec",
     "test.log": "DEBUG=bankbot:* mocha --recursive ./spec",
     "score": "node ./lib/tools/score/score.js",
-    "debug": "DEBUG=bankbot:* node-debug ./node_modules/.bin/_mocha --recursive ./spec",
+    "debug": "DEBUG=bankbot:* node-debug ./node_modules/.bin/_mocha --timeout=600000 --recursive ./spec",
     "console": "node ./lib/runtimes/console.js",
     "console.debug": "node-debug ./lib/runtimes/console.js"
   },
@@ -39,6 +39,7 @@
   },
   "homepage": "https://github.com/numical/bankbot#readme",
   "dependencies": {
+    "binary-search-tree": "^0.2.6",
     "debug": "^2.6.2",
     "natural": "^0.5.0",
     "node-env-file": "^0.1.8",
