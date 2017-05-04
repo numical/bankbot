@@ -11,7 +11,7 @@ const subject = proxyquire('../../../lib/channels/web/webNotifier.js', {
 });
 const { checkForWebNotification } = subject;
 
-describe.only('Web notifier tests', () => {
+describe('Web notifier tests', () => {
   beforeEach(() => {
     send.resetHistory();
     replyTo.resetHistory();

@@ -13,48 +13,48 @@ describe('Pay credit card context', () => {
   it('matches max', () => {
     const match = createContext().match('max');
     match.score.should.be.at.least(DEFINITE);
-    match.command.name.should.equal('makePayment');
+    match.command.name.should.equal('payCreditCard');
   });
 
   it('matches maximum', () => {
     const match = createContext().match('maximum');
     match.score.should.be.at.least(DEFINITE);
-    match.command.name.should.equal('makePayment');
+    match.command.name.should.equal('payCreditCard');
   });
 
   it('matches min', () => {
     const match = createContext().match('min');
     match.score.should.be.at.least(DEFINITE);
-    match.command.name.should.equal('makePayment');
+    match.command.name.should.equal('payCreditCard');
   });
 
   it('matches minimum', () => {
     const match = createContext().match('minimum');
     match.score.should.be.at.least(DEFINITE);
-    match.command.name.should.equal('makePayment');
+    match.command.name.should.equal('payCreditCard');
   });
 
   it('matches on an integer amount', () => {
     const match = createContext().match('80');
     match.score.should.be.at.least(DEFINITE);
-    match.command.name.should.equal('makePayment');
+    match.command.name.should.equal('payCreditCard');
   });
 
   it('matches on a float amount', () => {
     const match = createContext().match('12.34');
     match.score.should.be.at.least(DEFINITE);
-    match.command.name.should.equal('makePayment');
+    match.command.name.should.equal('payCreditCard');
   });
 
   it('matches on a currency amount', () => {
     const match = createContext().match('£45');
     match.score.should.be.at.least(DEFINITE);
-    match.command.name.should.equal('makePayment');
+    match.command.name.should.equal('payCreditCard');
   });
 
   it('matches on a currency float amount', () => {
     const match = createContext().match('£23.45');
     match.score.should.be.at.least(DEFINITE);
-    match.command.name.should.equal('makePayment');
+    match.command.name.should.equal('payCreditCard');
   });
 });

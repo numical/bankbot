@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 require('../initialiseTests.js');
-const { calculateBalances, createPaymentAction, MIN, MAX } = require('../../lib/commands/payOffCreditCard.js');
+const { calculateBalances, createPayCreditCardAction, MIN, MAX } = require('../../lib/commandCreators/payCreditCard.js');
 
 const state = {
   user: {
@@ -41,19 +41,19 @@ describe('payOffCreditCard', () => {
     });
   });
 
-  describe('createPaymentAction', () => {
+  describe('createPayCreditCardAction', () => {
     it('reports partial payment correctly', () => {
-      const paymentAction = createPaymentAction(75);
+      const paymentAction = createPayCreditCardAction(75);
       return paymentAction({}, state).should.eventually.equal('You have paid off £75.00 of your credit card balance, which now stands at £124.99. Your current account balance is now £425.00.');
     });
 
     it('reports MAX payment correctly', () => {
-      const paymentAction = createPaymentAction(MAX);
+      const paymentAction = createPayCreditCardAction(MAX);
       return paymentAction({}, state).should.eventually.equal('Your credit card is fully paid off. Your current account balance is now £300.01.');
     });
 
     it('reports full payment (not MAX) correctly', () => {
-      const paymentAction = createPaymentAction(199.99);
+      const paymentAction = createPayCreditCardAction(199.99);
       return paymentAction({}, state).should.eventually.equal('Your credit card is fully paid off. Your current account balance is now £300.01.');
     });
   });

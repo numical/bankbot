@@ -42,9 +42,15 @@ describe('http server tests', () => {
       .expect(200);
   });
 
-  it('web notification query responds with 204', () => {
+  it('invalid web notification query responds with 400 bad request', () => {
     return request(server)
       .get('/notification')
+      .expect(400);
+  });
+
+  it('valid web notification query responds with 204 no content', () => {
+    return request(server)
+      .get('/notification?userId=123')
       .expect(204);
   });
 
