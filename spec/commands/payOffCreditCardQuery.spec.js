@@ -1,10 +1,10 @@
 /* eslint-env mocha */
 /* eslint no-unused-expressions : 0 */
 'use strict';
-require('../initialiseTests.js');
+require('spec/initialiseTests.js');
 const { expect } = require('chai');
-const { PayCreditCard } = require('../../lib/contexts/payCreditCard.js');
-const subject = require('../../lib/commands/payOffCreditCardQuery.js');
+const { PayCreditCard } = require('lib/contexts/payCreditCard.js');
+const subject = require('lib/commands/payOffCreditCardQuery.js');
 
 const initState = (currentAccountBalance, creditCardBalance) => ({
   user: {

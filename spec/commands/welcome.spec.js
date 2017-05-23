@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 /* eslint no-unused-expressions : 0 */
-require('../initialiseTests.js');
-const subject = require('../../lib/commands/welcome.js');
+require('spec/initialiseTests.js');
+const subject = require('lib/commands/welcome.js');
 
 const state = {
   user: {

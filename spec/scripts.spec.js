@@ -1,9 +1,9 @@
 /* eslint-env mocha */
 require('./initialiseTests.js');
-const replyTo = require('../lib/channels/process/processReceiver.js');
+const replyTo = require('lib/channels/process/processReceiver.js');
 const fs = require('fs');
 const path = require('path');
-const reset = require('../lib/persistence/reset.js');
+const reset = require('lib/persistence/reset.js');
 
 const only = []; // ['3_admin_reset']; // ['1_hello_alice']; // '4_accept_credit_card_notification'];
 const scriptPath = path.resolve(__dirname, './scripts');

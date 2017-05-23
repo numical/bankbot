@@ -11,13 +11,9 @@
     "lib/"
   ],
   "scripts": {
-    "start": "node ./index.js",
-    "test": "mocha --recursive ./spec",
-    "test.log": "DEBUG=bankbot:* mocha --recursive ./spec",
-    "score": "node ./lib/tools/score/score.js",
-    "debug": "DEBUG=bankbot:* node-debug ./node_modules/.bin/_mocha --timeout=600000 --recursive ./spec",
-    "console": "node ./lib/runtimes/console.js",
-    "console.debug": "node-debug ./lib/runtimes/console.js"
+    "start": "nps",
+    "test": "nps test",
+    "help": "nps help"
   },
   "repository": {
     "type": "git",
@@ -44,11 +40,13 @@
     "natural": "^0.5.0",
     "node-env-file": "^0.1.8",
     "node-fetch": "^1.6.3",
+    "nps": "^5.2.0",
     "restify": "^4.3.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
+    "enforce-node-path": "^1.0.0",
     "mocha": "^3.2.0",
     "moment": "^2.18.1",
     "proxyquire": "^1.7.11",

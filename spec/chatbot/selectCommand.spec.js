@@ -1,10 +1,10 @@
 /* eslint-env mocha */
 require('../initialiseTests.js');
-const bye = require('../../lib/commands/bye.js');
-const notUnderstood = require('../../lib/commands/notUnderstood.js');
-const subject = require('../../lib/chatbot/selectCommand.js');
-const welcome = require('../../lib/commands/welcome.js');
-const welcomeContext = require('../../lib/contexts/welcome.js');
+const bye = require('lib/commands/bye.js');
+const notUnderstood = require('lib/commands/notUnderstood.js');
+const subject = require('lib/chatbot/selectCommand.js');
+const welcome = require('lib/commands/welcome.js');
+const welcomeContext = require('lib/contexts/welcome.js');
 
 let state;
 

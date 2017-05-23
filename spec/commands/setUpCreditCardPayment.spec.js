@@ -1,14 +1,14 @@
 'use strict';
 /* eslint-env mocha */
 /* eslint no-unused-expressions : 0 */
-require('../initialiseTests.js');
+require('spec/initialiseTests.js');
 const proxyquire = require('proxyquire');
 const sinon = require('sinon');
-const payOffCreditCardQuery = require('../../lib/commands/payOffCreditCardQuery.js');
-const { RANDOM_DELAY } = require('../../lib/services/schedule.js');
+const payOffCreditCardQuery = require('lib/commands/payOffCreditCardQuery.js');
+const { RANDOM_DELAY } = require('lib/services/schedule.js');
 
 const scheduleReply = sinon.spy();
-const subject = proxyquire('../../lib/commands/setUpCreditCardPayment.js', {
+const subject = proxyquire('lib/commands/setUpCreditCardPayment.js', {
   '../services/schedule.js': { scheduleReply, RANDOM_DELAY }
 });
 const replyContext = {

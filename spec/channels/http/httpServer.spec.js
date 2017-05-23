@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 
-const server = require('../../../lib/channels/http/httpServer.js').server;
 const request = require('supertest');
+const server = require('lib/channels/http/httpServer.js').server;
 
 describe('http server tests', () => {
   it('root path responds with 404', () => {

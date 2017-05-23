@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 require('../initialiseTests.js');
-const { calculateBalances, createPayCreditCardAction, MIN, MAX } = require('../../lib/commandCreators/payCreditCard.js');
+const { calculateBalances, createPayCreditCardAction, MIN, MAX } = require('lib/commandCreators/payCreditCard.js');
 
 const state = {
   user: {

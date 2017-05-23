@@ -1,8 +1,8 @@
 /* eslint-env mocha */
 'use strict';
-require('../initialiseTests.js');
+require('spec/initialiseTests.js');
 const requireDir = require('require-dir');
-const { serialize, deserialize } = require('../../lib/commands/commandSerializer.js');
+const { serialize, deserialize } = require('lib/commands/commandSerializer.js');
 
 const dir = requireDir('../../lib/commands');
 const notSerializer = ([name, command]) => name !== 'commandSerializer';

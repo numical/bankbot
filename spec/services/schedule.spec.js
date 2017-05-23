@@ -1,10 +1,10 @@
 'use strict';
 /* eslint-env mocha */
 /* eslint no-unused-expressions: 0 */
-require('../initialiseTests.js');
+require('spec/initialiseTests.js');
 const proxyquire = require('proxyquire');
 const { stub } = require('sinon');
-const { Scheduled } = require('../../lib/contexts/scheduled.js');
+const { Scheduled } = require('lib/contexts/scheduled.js');
 
 const state = {
   contexts: []
@@ -12,9 +12,9 @@ const state = {
 const getState = stub().resolves(state);
 const replyTo = stub();
 
-const subject = proxyquire('../../lib/services/schedule.js', {
-  '../persistence/getState.js': getState,
-  '../chatbot/replyTo.js': replyTo
+const subject = proxyquire('lib/services/schedule.js', {
+  'lib/persistence/getState.js': getState,
+  'lib/chatbot/respondTo.js': replyTo
 });
 const replyContext = {
   foo: 'bar',

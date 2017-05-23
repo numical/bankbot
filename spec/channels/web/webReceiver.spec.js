@@ -11,8 +11,8 @@ const request = {
 const send = stub();
 const response = { send };
 const replyTo = stub();
-const subject = proxyquire('../../../lib/channels/web/webReceiver.js', {
-  '../../chatbot/replyTo.js': replyTo
+const subject = proxyquire('lib/channels/web/webReceiver.js', {
+  'lib/chatbot/respondTo.js': replyTo
 });
 
 describe('Web receiver tests', () => {

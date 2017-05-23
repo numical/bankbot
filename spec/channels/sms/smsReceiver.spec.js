@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 const proxyquire = require('proxyquire');
-const sendMessage = require('../../../lib/channels/sms/smsSender.js');
+const sendMessage = require('lib/channels/sms/smsSender.js');
 const { stub } = require('sinon');
 
 const request = {
@@ -12,8 +12,8 @@ const request = {
 const send = stub();
 const response = { send };
 const replyTo = stub();
-const subject = proxyquire('../../../lib/channels/sms/smsReceiver.js', {
-  '../../chatbot/replyTo.js': replyTo
+const subject = proxyquire('lib/channels/sms/smsReceiver.js', {
+  'lib/chatbot/respondTo.js': replyTo
 });
 
 describe('Sms receiver tests', () => {

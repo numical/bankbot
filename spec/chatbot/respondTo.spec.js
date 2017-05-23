@@ -1,21 +1,21 @@
 /* eslint-env mocha */
 /* eslint no-unused-expressions: 0 */
 'use strict';
-require('../initialiseTests.js');
-const BotError = require('../../lib/errors/BotError.js');
-const bye = require('../../lib/commands/bye.js');
-const notUnderstood = require('../../lib/commands/notUnderstood.js');
+require('spec/initialiseTests.js');
+const BotError = require('lib/errors/BotError.js');
+const bye = require('lib/commands/bye.js');
+const notUnderstood = require('lib/commands/notUnderstood.js');
 const proxyquire = require('proxyquire');
 const { spy } = require('sinon');
-const { unexpectedErrorMessage } = require('../../lib/chatbot/replyTo.js');
+const { unexpectedErrorMessage } = require('lib/chatbot/respondTo.js');
 
 const sendMessage = spy();
 const replyContext = {
   sendMessage
 };
 
-const subject = proxyquire('../../lib/chatbot/replyTo.js', {
-  '../persistence/getState.js': () => ({
+const subject = proxyquire('lib/chatbot/respondTo.js', {
+  'lib/persistence/getState.js': () => ({
     user: {
       name: 'Alice'
     },
@@ -24,18 +24,18 @@ const subject = proxyquire('../../lib/chatbot/replyTo.js', {
 });
 
 const errorMessage = 'test error msg';
-const errorSubject = proxyquire('../../lib/chatbot/replyTo.js', {
-  '../persistence/getState.js': () => {
+const errorSubject = proxyquire('lib/chatbot/respondTo.js', {
+  'lib/persistence/getState.js': () => {
     throw new Error(errorMessage);
   }
 });
-const botErrorSubject = proxyquire('../../lib/chatbot/replyTo.js', {
-  '../persistence/getState.js': () => {
+const botErrorSubject = proxyquire('lib/chatbot/respondTo.js', {
+  'lib/persistence/getState.js': () => {
     throw new BotError(errorMessage);
   }
 });
 
-describe('replyTo - ', () => {
+describe('respondTo - ', () => {
   beforeEach(() => {
     sendMessage.reset();
   });
