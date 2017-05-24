@@ -8,7 +8,7 @@ const respondTo = require('lib/chatbot/respondTo.js');
 
 const createResponseContext = (data, actual) => {
   const responseContext = JSON.parse(data);
-  responseContext.sendMessage = (responseContext, message) => {
+  responseContext.sendMessage = (message) => {
     actual.botReply = message;
   };
   return responseContext;

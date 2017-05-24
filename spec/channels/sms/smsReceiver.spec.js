@@ -1,6 +1,5 @@
 /* eslint-env mocha */
 const proxyquire = require('proxyquire');
-const sendMessage = require('lib/channels/sms/smsSender.js');
 const { stub } = require('sinon');
 
 const request = {
@@ -11,32 +10,32 @@ const request = {
 };
 const send = stub();
 const response = { send };
-const replyTo = stub();
+const respondTo = stub();
 const subject = proxyquire('lib/channels/sms/smsReceiver.js', {
-  'lib/chatbot/respondTo.js': replyTo
+  'lib/chatbot/respondTo.js': respondTo
 });
 
 describe('Sms receiver tests', () => {
   beforeEach(() => {
     send.resetHistory();
-    replyTo.resetHistory();
+    respondTo.resetHistory();
   });
 
-  it('passes message to replyTo', () => {
+  it('passes message to respondTo', () => {
     subject(request, response);
-    replyTo.firstCall.args[1].should.equal('test message');
+    respondTo.firstCall.args[1].should.equal('test message');
   });
 
   it('passes the sender in the reply context', () => {
     subject(request, response);
-    const replyContext = replyTo.firstCall.args[0];
+    const replyContext = respondTo.firstCall.args[0];
     replyContext.number.should.equal('test number');
   });
 
-  it('passes the sms sender in the reply context', () => {
+  it('passes a send function in the reply context', () => {
     subject(request, response);
-    const replyContext = replyTo.firstCall.args[0];
-    replyContext.sendMessage.should.equal(sendMessage);
+    const replyContext = respondTo.firstCall.args[0];
+    replyContext.sendMessage.should.be.a('function');
   });
 
   it('return a 200 http response', () => {

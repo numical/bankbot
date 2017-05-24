@@ -13,7 +13,6 @@ const fetch = stub().returns({ ok: true });
 const subject = proxyquire('lib/channels/sms/smsSender.js', {
   'node-fetch': fetch
 });
-const replyContext = { number: 'testNumber' };
 const message = 'testMessage';
 
 describe('SMS sender tests', () => {
@@ -21,8 +20,14 @@ describe('SMS sender tests', () => {
     fetch.resetHistory();
   });
 
+  it('returns a send function', () => {
+    const sendFn = subject('test number');
+    sendFn.should.be.a('function');
+  });
+
   it('posts to textmagic url', async () => {
-    await subject(replyContext, message);
+    const sendFn = subject('test number');
+    await sendFn(message);
     const url = fetch.firstCall.args[0];
     url.should.equal('https://rest.textmagic.com/api/v2/messages');
   });

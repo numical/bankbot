@@ -17,24 +17,6 @@ describe('Web notifier tests', () => {
     replyTo.resetHistory();
   });
 
-  /*
-  it('passes message to replyTo', () => {
-    subject(request, response);
-    replyTo.firstCall.args[1].should.equal('test message');
-  });
-
-  it('passes the sender in the reply context', () => {
-    subject(request, response);
-    const replyContext = replyTo.firstCall.args[0];
-    replyContext.number.should.equal('test number');
-  });
-
-  it('passes the sms sender in the reply context', () => {
-    subject(request, response);
-    const replyContext = replyTo.firstCall.args[0];
-    replyContext.sendMessage.should.equal(sendMessage);
-  });
-*/
   it('returns a 404 http response if no query string passed', async() => {
     const request = {};
     await checkForWebNotification(request, response);

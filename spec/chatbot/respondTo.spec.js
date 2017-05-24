@@ -41,21 +41,21 @@ describe('respondTo - ', () => {
   });
   it('replies to gibberish with Not Understood message', async () => {
     await subject(replyContext, 'xyzjkl');
-    sendMessage.calledWithExactly(replyContext, notUnderstood.content).should.be.true;
+    sendMessage.calledWithExactly(notUnderstood.content).should.be.true;
   });
 
   it('replies to bye with Bye message', async () => {
     await subject(replyContext, 'bye');
-    sendMessage.calledWithExactly(replyContext, bye.content).should.be.true;
+    sendMessage.calledWithExactly(bye.content).should.be.true;
   });
 
   it('handles an unexpected Error by displaying the Unexpected Error message', async () => {
     await errorSubject(replyContext, 'anything');
-    sendMessage.calledWithExactly(replyContext, unexpectedErrorMessage).should.be.true;
+    sendMessage.calledWithExactly(unexpectedErrorMessage).should.be.true;
   });
 
   it('handles a BotError by displaying the BotError\'s message', async () => {
     await botErrorSubject(replyContext, 'anything');
-    sendMessage.calledWithExactly(replyContext, errorMessage).should.be.true;
+    sendMessage.calledWithExactly(errorMessage).should.be.true;
   });
 });
