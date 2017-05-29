@@ -1,0 +1,9 @@
+{ "number": "447777000001" }
+
+Hi Alice, I'm BankBot. As this is your first time, some setup.  Should I notify you when your credit card repayment is due?
+Y
+Ok, I will notify you about any outstanding credit card repayment around the 16th of the month. In the meantime you can check your [balance].
+[payOffCreditCardQuery]
+You are due to make a credit card payment.  You owe £199.99 and have £740.33 in your current account.  Please choose between making a [minimum] payment of £25.00, a [maximum] payment of £199.99, or any amount between these two figures.
+max
+Your credit card is fully paid off. Your current account balance is now £540.34.

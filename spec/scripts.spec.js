@@ -14,13 +14,14 @@ const createResponseContext = (data, actual) => {
   return responseContext;
 };
 
-const isCommand = responseEvent => /\[*\]/.test(responseEvent);
+// if starts with '[' and ends with ']', the name of command
+const commandPattern = /^[[](.*)[\]]$/;
 const createResponseEvent = data => {
-  let responseEvent = data;
-  if (isCommand(responseEvent)) {
-    responseEvent = convertToCommand(responseEvent);
+  const isACommand = commandPattern.exec(data);
+  if (isACommand) {
+    return convertToCommand(isACommand[1]);
   }
-  return responseEvent;
+  return data;
 };
 
 const setExpectedReply = (data, expected) => {
@@ -52,7 +53,7 @@ const loadScripts = dir => {
 const scripts = loadScripts(scriptPath);
 
 // permit a subset of scripts to be selected
-const only = [];
+const only = []; // ['5_pay_credit_card_alice_max'];
 const describeFn = only.length > 0 ? describe.only : describe;
 
 // main test
@@ -60,9 +61,14 @@ describeFn('Scripts', () => {
   beforeEach(() => {
     reset();
   });
+  let numberOfScriptsRun = 0;
   Object.keys(scripts).forEach(script => {
     if ((only.length === 0) || only.includes(script)) {
       it(script, generateScriptTest(scripts[script]));
+      numberOfScriptsRun += 1;
     }
+  });
+  it('at least one script should be run', () => {
+    numberOfScriptsRun.should.be.at.least(1);
   });
 });
