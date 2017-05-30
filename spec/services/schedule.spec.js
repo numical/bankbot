@@ -4,17 +4,11 @@
 require('spec/initialiseTests.js');
 const proxyquire = require('proxyquire');
 const { stub } = require('sinon');
-const { Scheduled } = require('lib/contexts/scheduled.js');
 
-const state = {
-  contexts: []
-};
-const getState = stub().resolves(state);
-const replyTo = stub();
+const respondTo = stub();
 
 const subject = proxyquire('lib/services/schedule.js', {
-  'lib/persistence/getState.js': getState,
-  'lib/chatbot/respondTo.js': replyTo
+  'lib/chatbot/respondTo.js': respondTo
 });
 const replyContext = {
   foo: 'bar',
@@ -24,34 +18,20 @@ const command = () => {};
 
 describe('Schedule Service', () => {
   beforeEach(() => {
-    state.contexts = [];
-    getState.resetHistory();
-    replyTo.resetHistory();
+    respondTo.resetHistory();
   });
 
   it('exports RANDOM DELAY', () => {
     subject.RANDOM_DELAY.should.be.a('symbol');
   });
 
-  it('calls persistence service with passed replyContex', async () => {
+  it('calls chatbot respondTo', async() => {
     await subject.triggerReply(replyContext, command);
-    getState.calledWith(replyContext).should.be.true;
+    respondTo.calledOnce.should.be.true;
   });
 
-  it('adds a scheduled command to the context', async() => {
+  it('passes reply context and command to respondTo', async() => {
     await subject.triggerReply(replyContext, command);
-    state.contexts.length.should.equal(1);
-    state.contexts[0].should.be.an.instanceof(Scheduled);
-    state.contexts[0].command.should.equal(command);
-  });
-
-  it('calls chatbot replyTo', async() => {
-    await subject.triggerReply(replyContext, command);
-    replyTo.calledOnce.should.be.true;
-  });
-
-  it('passes reply contexti and command to replyTo', async() => {
-    await subject.triggerReply(replyContext, command);
-    replyTo.calledWithExactly(replyContext, command);
+    respondTo.calledWithExactly(replyContext, command);
   });
 });

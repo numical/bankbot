@@ -6,10 +6,9 @@ const { stub } = require('sinon');
 const send = stub();
 const response = { send };
 const replyTo = stub();
-const subject = proxyquire('lib/channels/web/webNotifier.js', {
+const checkForWebNotification = proxyquire('lib/channels/web/webNotifier.js', {
   'lib/chatbot/respondTo.js': replyTo
 });
-const { checkForWebNotification } = subject;
 
 describe('Web notifier tests', () => {
   beforeEach(() => {
